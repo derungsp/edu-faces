@@ -5,8 +5,8 @@ import "./globals.css";
 const ubuntu = Ubuntu({ weight: ["400", "700"], subsets: ["latin"] });
 
 export const metadata: Metadata = {
-  title: "Boilerplate v2 - SWISS CODE L.L.C.",
-  description: "Boilerplate for SWISS CODE L.L.C.",
+  title: "eduFaces",
+  description: "eduFaces",
 };
 
 export default function RootLayout({
@@ -15,7 +15,7 @@ export default function RootLayout({
   children: React.ReactNode;
 }) {
   return (
-    <html lang="en">
+    <html lang="en" className="bg-gray-50">
       <body className={ubuntu.className}>{children}</body>
     </html>
   );
