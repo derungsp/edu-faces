@@ -1,17 +1,11 @@
 "use client";
 
 import { useEffect, useState } from "react";
+import { ImageData } from "../definitions/definitions";
 
-interface ImageData {
-  src: string; // Base64-String
-  firstName: string;
-  lastName: string;
-}
-
-export function FileUploader() {
+export const FileUploader = () => {
   const [images, setImages] = useState<ImageData[]>([]);
 
-  // Lade Bilder aus LocalStorage beim ersten Render
   useEffect(() => {
     const storedImages = localStorage.getItem("uploadedImages");
     if (storedImages) {
@@ -25,19 +19,16 @@ export function FileUploader() {
     if (event.target.files) {
       const uploadedFiles = Array.from(event.target.files);
 
-      // Bilder in Base64 konvertieren
       const base64Images = await Promise.all(
         uploadedFiles.map((file) => toBase64(file)),
       );
 
-      // Bilder in das ImageData-Format umwandeln
       const newImages = base64Images.map((src) => ({
         src,
         firstName: "",
         lastName: "",
       }));
 
-      // Aktualisiere den State und speichere in LocalStorage
       const updatedImages = [...images, ...newImages];
       setImages(updatedImages);
       localStorage.setItem("uploadedImages", JSON.stringify(updatedImages));
@@ -120,4 +111,4 @@ export function FileUploader() {
       </button>
     </main>
   );
-}
+};

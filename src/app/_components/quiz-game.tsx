@@ -8,14 +8,13 @@ interface ImageData {
   lastName: string;
 }
 
-export function QuizGame() {
+export const QuizGame = () => {
   const [images, setImages] = useState<ImageData[]>([]);
   const [currentImageIndex, setCurrentImageIndex] = useState(0);
   const [options, setOptions] = useState<string[]>([]);
   const [correctAnswer, setCorrectAnswer] = useState<string>("");
   const [feedback, setFeedback] = useState<string | null>(null);
 
-  // Lade die Bilddaten aus LocalStorage beim ersten Render
   useEffect(() => {
     const storedImages = localStorage.getItem("uploadedImages");
     if (storedImages) {
@@ -28,23 +27,19 @@ export function QuizGame() {
   const generateQuestion = (imageSet: ImageData[]) => {
     if (imageSet.length === 0) return;
 
-    // Zufälliges Bild auswählen
     const randomIndex = Math.floor(Math.random() * imageSet.length);
     const selectedImage = imageSet[randomIndex];
     setCurrentImageIndex(randomIndex);
 
-    // Setze die richtige Antwort
     const correctName = `${selectedImage.firstName} ${selectedImage.lastName}`;
     setCorrectAnswer(correctName);
 
-    // Erstelle 3 falsche Optionen
     const incorrectOptions = imageSet
       .filter((_, index) => index !== randomIndex)
       .sort(() => 0.5 - Math.random())
       .slice(0, 3)
       .map((img) => `${img.firstName} ${img.lastName}`);
 
-    // Füge die richtige Antwort hinzu und mische die Optionen
     const allOptions = [correctName, ...incorrectOptions].sort(
       () => 0.5 - Math.random(),
     );
@@ -58,7 +53,6 @@ export function QuizGame() {
       setFeedback("Falsch!");
     }
 
-    // Nächste Frage nach kurzer Verzögerung
     setTimeout(() => {
       setFeedback(null);
       generateQuestion(images);
@@ -66,7 +60,7 @@ export function QuizGame() {
   };
 
   return (
-    <main className="flex min-h-screen flex-col items-center justify-center bg-gray-50 p-4">
+    <main className="flex flex-col items-center justify-center bg-gray-50 p-4">
       <h1 className="mb-4 text-2xl font-bold">Quiz: Schülernamen lernen</h1>
       {images.length > 0 ? (
         <div className="flex flex-col items-center">
@@ -101,4 +95,4 @@ export function QuizGame() {
       )}
     </main>
   );
-}
+};
