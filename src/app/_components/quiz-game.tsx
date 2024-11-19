@@ -74,7 +74,7 @@ export const QuizGame = () => {
   };
 
   return (
-    <main className="flex flex-col items-center justify-center bg-gray-50 p-4">
+    <main className="flex flex-col items-center justify-center p-4">
       <h1 className="mb-4 text-2xl font-bold">Quiz: Schülernamen lernen</h1>
 
       <div className="mb-4">

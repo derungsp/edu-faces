@@ -16,7 +16,7 @@ export default function RootLayout({
   children: React.ReactNode;
 }) {
   return (
-    <html lang="en" className="bg-gray-50">
+    <html lang="de">
       <body className={ubuntu.className}>
         <Header />
         {children}
