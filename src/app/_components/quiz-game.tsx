@@ -74,12 +74,16 @@ export const QuizGame = () => {
   };
 
   return (
-    <main className="flex flex-col items-center justify-center p-4">
-      <h1 className="mb-4 text-2xl font-bold">Quiz: Schülernamen lernen</h1>
+    <main className="flex min-h-screen flex-col items-center justify-center bg-blue-50 p-4">
+      <h1 className="mb-4 text-4xl font-bold text-blue-900">
+        Quiz: Schülernamen lernen
+      </h1>
 
-      <div className="mb-4">
-        <h2 className="mb-2 text-lg font-semibold">Klassen auswählen:</h2>
-        <div className="flex flex-wrap gap-2">
+      <div className="mb-4 flex flex-col items-center">
+        <h2 className="mb-2 text-2xl font-semibold text-blue-900">
+          Klassen auswählen:
+        </h2>
+        <div className="flex flex-wrap justify-center gap-2">
           {classes.map((cls) => (
             <label key={cls.identifier} className="flex items-center gap-2">
               <input
@@ -87,6 +91,7 @@ export const QuizGame = () => {
                 value={cls.identifier}
                 checked={selectedClasses.includes(cls.identifier)}
                 onChange={() => toggleClassSelection(cls.identifier)}
+                className="rounded border-gray-300 text-blue-600 focus:ring-blue-500"
               />
               {cls.identifier}
             </label>
@@ -94,7 +99,7 @@ export const QuizGame = () => {
         </div>
         <button
           onClick={generateQuizPool}
-          className="mt-4 rounded bg-green-500 px-4 py-2 text-white"
+          className="mt-4 rounded-lg bg-green-600 px-6 py-2 text-white shadow-md transition duration-300 hover:bg-green-700"
         >
           Quiz starten
         </button>
@@ -105,14 +110,14 @@ export const QuizGame = () => {
           <img
             src={quizImages[currentImageIndex].src}
             alt="Quiz Bild"
-            className="mb-4 h-48 w-48 rounded object-cover"
+            className="mb-4 h-48 w-48 rounded-lg object-cover shadow-md"
           />
           <div className="mb-4 grid grid-cols-2 gap-4">
             {options.map((option, index) => (
               <button
                 key={index}
                 onClick={() => handleOptionSelect(option)}
-                className="rounded bg-blue-500 px-4 py-2 text-white"
+                className="rounded-lg bg-blue-500 px-4 py-2 text-white shadow-md transition duration-300 hover:bg-blue-600"
               >
                 {option}
               </button>
@@ -120,7 +125,7 @@ export const QuizGame = () => {
           </div>
           {feedback && (
             <p
-              className={`text-lg font-semibold ${
+              className={`fixed bottom-4 left-1/2 -translate-x-1/2 transform text-lg font-semibold ${
                 feedback === "Richtig!" ? "text-green-500" : "text-red-500"
               }`}
             >

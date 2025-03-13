@@ -1,5 +1,3 @@
-// import Link from "next/link";
-
 "use client";
 
 import {
@@ -26,14 +24,19 @@ export const Header = () => {
   ];
 
   return (
-    <Navbar onMenuOpenChange={setIsMenuOpen}>
+    <Navbar
+      onMenuOpenChange={setIsMenuOpen}
+      className="fixed bg-blue-600 text-white"
+    >
       <NavbarContent>
         <NavbarMenuToggle
           aria-label={isMenuOpen ? "Close menu" : "Open menu"}
           className="sm:hidden"
         />
         <NavbarBrand>
-          <p className="font-bold text-inherit">EduFaces</p>
+          <Link href="/" className="text-xl font-bold text-inherit">
+            EduFaces
+          </Link>
         </NavbarBrand>
       </NavbarContent>
 
@@ -43,6 +46,7 @@ export const Header = () => {
             <Link
               href={item.href}
               aria-current={pathname === item.href ? "page" : undefined}
+              className="text-white hover:text-gray-200"
             >
               {item.label}
             </Link>
@@ -55,7 +59,11 @@ export const Header = () => {
             key={`${item.label}-${index}`}
             isActive={pathname === item.href}
           >
-            <Link className="w-full" href={item.href} size="lg">
+            <Link
+              className="w-full text-black hover:text-gray-800"
+              href={item.href}
+              size="lg"
+            >
               {item.label}
             </Link>
           </NavbarMenuItem>

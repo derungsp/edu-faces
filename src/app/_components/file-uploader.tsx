@@ -92,14 +92,14 @@ export const FileUploader = () => {
       <div className="mb-4 flex flex-col items-center">
         <button
           onClick={createClass}
-          className="mb-2 rounded bg-blue-500 px-4 py-2 text-white"
+          className="rounded-lg bg-blue-600 px-6 py-2 text-white shadow-md transition duration-300 hover:bg-blue-700"
         >
           Neue Klasse erstellen
         </button>
         <select
           value={currentClass}
           onChange={(e) => setCurrentClass(e.target.value)}
-          className="rounded border p-2"
+          className="mt-5 rounded border p-2"
         >
           <option value="" disabled>
             Klasse auswählen
@@ -170,7 +170,7 @@ export const FileUploader = () => {
 
       <button
         onClick={clearClasses}
-        className="mt-4 rounded bg-red-500 px-4 py-2 text-white"
+        className="rounded-lg bg-red-600 px-6 py-2 text-white shadow-md transition duration-300 hover:bg-red-700"
       >
         Alle Klassen löschen
       </button>
